@@ -1,0 +1,2072 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shuhan Teng · Brand Strategy &amp; Marketing Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ========== CSS VARIABLES ========== */
+:root {
+  --ink: #0a0c10;
+  --ink-2: #11141c;
+  --ink-3: #1a1e2a;
+  --paper: #f5f0e8;
+  --paper-dim: #b8b0a0;
+  --gold: #c9a96e;
+  --gold-bright: #dfc07a;
+  --gold-soft: #e8d9b6;
+  --accent: #c45c4a;
+  --accent-soft: #d97868;
+  --line: rgba(201,169,110,0.15);
+  --line-strong: rgba(201,169,110,0.35);
+  --glass: rgba(17,20,28,0.75);
+  --max-w: 1280px;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ========== RESET & BASE ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::selection { background: var(--gold); color: var(--ink); }
+a { color: inherit; text-decoration: none; transition: color .3s; }
+img { max-width: 100%; display: block; object-fit: cover; }
+ul { list-style: none; }
+
+/* ========== UTILITY ========== */
+.wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 48px; }
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-block;
+}
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.01em; }
+
+/* ========== NAVIGATION ========== */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(10,12,16,0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--line);
+  transition: all .4s ease;
+}
+.navbar.scrolled { background: rgba(10,12,16,0.95); }
+.nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 48px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.nav-logo span { color: var(--gold); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+.nav-links a {
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--paper-dim);
+  font-weight: 500;
+  position: relative;
+  padding: 4px 0;
+  transition: color .3s;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width .3s ease;
+}
+.nav-links a:hover { color: var(--paper); }
+.nav-links a:hover::after { width: 100%; }
+
+/* Language Toggle */
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--ink-3);
+  border-radius: 20px;
+  padding: 3px;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid var(--line);
+}
+.lang-toggle span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 5px 14px;
+  border-radius: 18px;
+  color: var(--paper-dim);
+  transition: all .3s;
+  z-index: 1;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+.lang-toggle span.active {
+  color: var(--ink);
+  background: var(--gold);
+}
+.lang-toggle .slider {
+  position: absolute;
+  top: 3px;
+  height: calc(100% - 6px);
+  border-radius: 18px;
+  background: var(--gold);
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
+  z-index: 0;
+}
+.lang-toggle[data-active="en"] .slider { left: 3px; width: 40px; }
+.lang-toggle[data-active="zh"] .slider { left: calc(50% + 1px); width: 40px; }
+
+/* Mobile Menu */
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 6px;
+  padding: 4px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--paper);
+  transition: all .3s;
+  border-radius: 1px;
+}
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+@media (max-width: 960px) {
+  .nav-hamburger { display: flex; }
+  .nav-links {
+    position: fixed;
+    top: 72px; right: 0; bottom: 0;
+    width: 280px;
+    background: var(--ink-2);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px 32px;
+    gap: 24px;
+    transform: translateX(100%);
+    transition: transform .4s cubic-bezier(.4,0,.2,1);
+    border-left: 1px solid var(--line);
+  }
+  .nav-links.open { transform: translateX(0); }
+  .wrap { padding: 0 24px; }
+  .nav-inner { padding: 0 24px; }
+}
+
+/* ========== HERO SECTION ========== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.25) saturate(0.7);
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 70% 20%, rgba(201,169,110,0.08), transparent 55%),
+    radial-gradient(ellipse at 20% 80%, rgba(196,92,74,0.06), transparent 50%),
+    linear-gradient(to bottom, rgba(10,12,16,0.3) 0%, rgba(10,12,16,0.75) 60%, rgba(10,12,16,0.95) 100%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 130px 0 80px;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+h1.hero-name {
+  font-size: clamp(52px, 7vw, 88px);
+  line-height: 1;
+  margin-bottom: 28px;
+  font-weight: 600;
+}
+h1.hero-name em {
+  font-style: italic;
+  color: var(--gold-soft);
+  font-weight: 400;
+  display: block;
+  font-size: 0.58em;
+  margin-top: 8px;
+  letter-spacing: 0.03em;
+}
+html[data-lang="zh"] h1.hero-name em { font-style: normal; }
+.hero-role {
+  font-size: clamp(15px, 1.8vw, 19px);
+  color: var(--paper-dim);
+  line-height: 1.75;
+  margin-bottom: 44px;
+  font-weight: 300;
+  max-width: 580px;
+}
+.hero-role p { margin-bottom: 18px; }
+.hero-role p:last-child { margin-bottom: 0; }
+.hero-role b, .hero-role strong { color: var(--paper); font-weight: 500; }
+
+/* Hero Photo */
+.hero-photo-wrap { position: relative; display: flex; justify-content: flex-end; }
+.hero-photo-frame {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  width: fit-content;
+  max-width: 100%;
+  height: 440px;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.5),
+    0 0 0 1px var(--line),
+    0 0 80px rgba(201,169,110,0.06);
+}
+.hero-photo-frame img {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  filter: grayscale(10%) contrast(1.05);
+  transition: all .8s ease;
+}
+.hero-photo-frame:hover img {
+  filter: grayscale(0%) contrast(1);
+  transform: scale(1.02);
+}
+.hero-photo-accent {
+  position: absolute;
+  bottom: -16px; right: -16px;
+  width: 120px; height: 120px;
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+
+@media (max-width: 960px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero-photo-wrap { order: -1; max-width: 320px; margin: 0 auto; justify-content: center; }
+  .hero-photo-frame { width: 100%; height: auto; }
+  .hero-photo-frame img { height: auto; width: 100%; aspect-ratio: 3/4; }
+  .hero { min-height: auto; padding-top: 100px; }
+}
+
+/* ========== SECTION SHARED ========== */
+section { padding: 90px 0; border-bottom: 1px solid var(--line); position: relative; }
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  margin-bottom: 64px;
+  flex-wrap: wrap;
+}
+.section-head h2 {
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.1;
+}
+.section-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--line);
+  padding: 9px 18px;
+  border-radius: 2px;
+  white-space: nowrap;
+  height: fit-content;
+}
+.section-intro {
+  max-width: 640px;
+  color: var(--paper-dim);
+  font-size: 15.5px;
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 56px;
+}
+
+/* ========== PROFILE SECTION ========== */
+.profile-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+.profile-text p {
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--paper-dim);
+  font-weight: 300;
+  margin-bottom: 22px;
+}
+.profile-text p strong,
+.profile-text p b { color: var(--paper); font-weight: 500; }
+
+.fit-list { border-top: 1px solid var(--line); }
+.fit-item {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 20px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--line);
+  transition: background .3s;
+}
+.fit-item:hover { background: rgba(201,169,110,0.03); }
+.fit-n {
+  font-family: var(--font-mono);
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 600;
+  padding-top: 3px;
+}
+.fit-item h4 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14.5px;
+  margin-bottom: 7px;
+  letter-spacing: 0.01em;
+  color: var(--paper);
+}
+.fit-item p {
+  font-size: 13.5px;
+  color: var(--paper-dim);
+  line-height: 1.65;
+  font-weight: 300;
+  text-wrap: pretty;
+}
+.nw { white-space: nowrap; }
+
+@media (max-width: 900px) {
+  .profile-layout { grid-template-columns: 1fr; gap: 48px; }
+}
+
+/* ========== EXPERIENCE (concise image+text cards) ========== */
+.exp-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.exp-card {
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all .4s ease;
+  display: flex;
+  flex-direction: column;
+}
+.exp-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.exp-visual {
+  position: relative;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #14171f, #241a2e);
+  border-bottom: 1px solid var(--line);
+}
+.exp-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(201,169,110,0.14), transparent 60%);
+}
+.exp-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(201,169,110,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,169,110,0.05) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(circle at 50% 50%, #000, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000, transparent 75%);
+}
+.exp-monogram {
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: .92;
+  z-index: 1;
+  line-height: 1;
+}
+.exp-vbadge {
+  position: absolute;
+  top: 14px; left: 14px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--paper-dim);
+  z-index: 1;
+  border: 1px solid var(--line);
+  padding: 4px 10px;
+  border-radius: 2px;
+  background: rgba(10,12,16,0.4);
+}
+.exp-card-body { padding: 24px 24px 28px; flex: 1; display: flex; flex-direction: column; }
+.exp-co {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.exp-role {
+  font-size: 13px;
+  color: var(--gold-soft);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.exp-period {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+  display: block;
+}
+.exp-line {
+  font-size: 13.5px;
+  color: var(--paper-dim);
+  line-height: 1.7;
+  font-weight: 300;
+  margin-bottom: 18px;
+}
+.exp-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+.exp-tags span {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--line);
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+/* Experience card photos */
+.exp-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 1;
+  transition: transform .6s ease;
+}
+.exp-card:hover .exp-photo { transform: scale(1.06); }
+.exp-photo-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+.exp-visual.no-photo .exp-photo { display: none; }
+.exp-visual.no-photo .exp-photo-fallback { display: flex; }
+.exp-visual { cursor: pointer; }
+.exp-vbadge { z-index: 3; }
+.exp-replace {
+  position: absolute;
+  top: 12px; right: 12px;
+  z-index: 4;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: rgba(10,12,16,0.55);
+  color: var(--gold);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .3s ease, background .3s ease;
+}
+.exp-visual:not(.no-photo):hover .exp-replace { opacity: 1; }
+.exp-replace:hover { background: var(--gold); color: var(--ink); }
+
+/* Featured Videos */
+.videos-block {
+  margin-top: 64px;
+  padding-top: 56px;
+  border-top: 1px solid var(--line);
+}
+.videos-block h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: var(--gold-soft);
+}
+.videos-block .videos-note {
+  font-size: 14px;
+  color: var(--paper-dim);
+  font-weight: 300;
+  line-height: 1.7;
+  max-width: 640px;
+  margin-bottom: 28px;
+}
+.videos-block .videos-note em {
+  font-style: italic;
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-weight: 500;
+}
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Video link cards (local upload + click to open website) */
+.vid-card { display: flex; flex-direction: column; text-decoration: none; color: inherit; }
+.vid-visual {
+  position: relative;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, #14171f, #241a2e);
+  cursor: pointer;
+  transition: border-color .3s ease, transform .4s ease;
+}
+.vid-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(201,169,110,0.14), transparent 60%);
+  z-index: 0;
+}
+.vid-card:hover .vid-visual { border-color: var(--gold); transform: translateY(-3px); }
+.vid-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 1;
+  transition: transform .6s ease;
+}
+.vid-card:hover .vid-photo { transform: scale(1.05); }
+.vid-photo-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+.vid-monogram {
+  font-size: 56px;
+  color: var(--gold);
+  opacity: .92;
+  z-index: 1;
+  line-height: 1;
+  text-shadow: 0 2px 18px rgba(201,169,110,0.35);
+}
+.vid-visual.no-photo .vid-photo { display: none; }
+.vid-visual.no-photo .vid-photo-fallback { display: flex; }
+.vid-visual.no-photo::after {
+  content: attr(data-hint);
+  position: absolute;
+  bottom: 14px;
+  z-index: 3;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--paper-dim);
+}
+.vid-replace {
+  position: absolute;
+  top: 12px; right: 12px;
+  z-index: 4;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: rgba(10,12,16,0.55);
+  color: var(--gold);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .3s ease, background .3s ease;
+}
+.vid-visual:not(.no-photo):hover .vid-replace { opacity: 1; }
+.vid-replace:hover { background: var(--gold); color: var(--ink); }
+.vid-visit {
+  position: absolute;
+  left: 12px; bottom: 12px;
+  z-index: 4;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--gold);
+  padding: 6px 12px;
+  border-radius: 2px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .3s ease, transform .3s ease;
+  pointer-events: none;
+}
+.vid-visual:not(.no-photo):hover .vid-visit { opacity: 1; transform: translateY(0); }
+.vid-cap {
+  margin-top: 12px;
+  font-size: 13.5px;
+  color: var(--paper-dim);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .exp-cards { grid-template-columns: 1fr; }
+  .video-grid { grid-template-columns: 1fr; }
+}
+
+/* ========== PORTFOLIO — ACCORDION GALLERY ========== */
+.accordions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.accordion {
+  display: flex;
+  gap: 12px;
+  height: 440px;
+  width: 100%;
+}
+.accordion--center {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.acc-panel {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--ink-2);
+  box-shadow: 0 12px 34px -20px rgba(0,0,0,0.85);
+  transition: flex .6s cubic-bezier(.4,0,.2,1);
+  transform-style: preserve-3d;
+  outline: none;
+}
+.acc-panel:focus-visible {
+  box-shadow: 0 0 0 2px var(--gold), 0 12px 34px -20px rgba(0,0,0,0.85);
+}
+.acc-panel.active { flex: 3.2 1 0; }
+.acc-panel img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(0%) brightness(.9);
+  transform: scale(1.04);
+  transition: filter .6s ease, transform .9s ease;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.acc-panel.active img {
+  filter: grayscale(0%) brightness(1);
+  transform: scale(1.1);
+}
+.acc-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 42%, rgba(10,12,16,0.8) 100%);
+  opacity: .55;
+  transition: opacity .5s ease;
+}
+.acc-panel.active .acc-overlay { opacity: 1; }
+.acc-caption {
+  position: absolute;
+  left: 24px; right: 24px; bottom: 24px;
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  opacity: 0;
+  transform: translateX(-14px);
+  transition: opacity .5s ease, transform .5s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+.acc-panel.active .acc-caption { opacity: 1; transform: translateX(0); }
+.acc-bar {
+  flex: 0 0 auto;
+  width: 3px; height: 30px;
+  border-radius: 3px;
+  background: var(--gold);
+  box-shadow: 0 0 12px rgba(201,169,110,0.6);
+}
+.acc-caption-text { display: flex; flex-direction: column; min-width: 0; }
+.acc-text {
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.1rem, 1.6vw, 1.55rem);
+  letter-spacing: 0.01em;
+  line-height: 1.18;
+  font-variant-numeric: lining-nums;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.acc-sub {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 12.5px;
+  color: var(--paper-dim);
+  margin-top: 5px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.acc-zoom {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(17,20,28,0.6);
+  border: 1px solid var(--line-strong);
+  color: var(--paper);
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .4s ease, background .3s, color .3s;
+  cursor: pointer;
+  z-index: 3;
+  pointer-events: none;
+}
+.acc-panel.active .acc-zoom { opacity: 1; pointer-events: auto; }
+.acc-zoom:hover { background: var(--gold); color: var(--ink); }
+
+/* Upload affordance for placeholder images */
+.acc-panel.is-empty { cursor: pointer; }
+.acc-panel.is-empty img { display: none; }
+.acc-panel.is-empty { background: linear-gradient(135deg,#161b27,#241a1a); }
+.acc-upload {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  padding: 0 16px;
+  pointer-events: none;
+}
+.acc-panel.is-empty .acc-upload { display: flex; }
+.acc-upload .acc-plus {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(185,147,86,0.55);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; line-height: 1;
+  color: var(--gold);
+  background: rgba(13,20,32,0.45);
+  transition: transform .3s ease, border-color .3s ease;
+}
+.acc-panel.is-empty:hover .acc-plus { transform: scale(1.08); border-color: var(--gold); }
+.acc-upload-text {
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--paper-dim);
+}
+.acc-replace {
+  position: absolute;
+  top: 16px; right: 60px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(17,20,28,0.6);
+  border: 1px solid var(--line-strong);
+  color: var(--paper);
+  font-size: 15px;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0;
+  transition: opacity .4s ease, background .3s, color .3s;
+  cursor: pointer;
+  z-index: 3;
+  pointer-events: none;
+}
+.acc-panel:hover .acc-replace,
+.acc-panel.active .acc-replace { opacity: 1; pointer-events: auto; }
+.acc-panel.is-empty .acc-replace { display: none; }
+.acc-replace:hover { background: var(--gold); color: var(--ink); }
+
+/* Hero portrait replace affordance */
+.hero-photo-frame { cursor: pointer; }
+.hero-photo-replace {
+  position: absolute;
+  bottom: 12px; left: 12px;
+  z-index: 4;
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(13,20,32,0.72);
+  border: 1px solid var(--line-strong);
+  color: var(--paper);
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  opacity: 0;
+  transition: opacity .3s ease;
+  pointer-events: none;
+}
+.hero-photo-frame:hover .hero-photo-replace { opacity: 1; }
+
+@media (max-width: 768px) {
+  .accordion { flex-direction: column; height: auto; }
+  .accordion--center { max-width: 100%; }
+  .acc-panel { height: 150px; flex: none; }
+  .acc-panel.active { height: 240px; flex: none; }
+  .acc-caption { left: 18px; right: 18px; bottom: 18px; }
+  .acc-text { font-size: 1.15rem; }
+  .acc-zoom { display: none; }
+  .acc-replace { display: none; }
+}
+
+/* ========== SKILLS ========== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.skill-block {
+  background: var(--ink);
+  padding: 36px 28px;
+  transition: background .3s;
+}
+.skill-block:hover { background: var(--ink-2); }
+.skill-block h4 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+.skill-block ul { list-style: none; }
+.skill-block li {
+  font-size: 13.5px;
+  color: var(--paper-dim);
+  line-height: 2.15;
+  font-weight: 300;
+  border-top: 1px solid rgba(244,240,232,0.05);
+  padding-top: 9px;
+  margin-top: 9px;
+}
+.skill-block li:first-child { border-top: none; margin-top: 0; padding-top: 0; }
+.skill-block li b,
+.skill-block li strong { color: var(--paper); font-weight: 500; }
+@media (max-width: 900px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .skills-grid { grid-template-columns: 1fr; } }
+
+/* ========== CV DOWNLOAD BAR ========== */
+.cv-bar {
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 32px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin: 80px 0;
+}
+.cv-bar-text h3 {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+.cv-bar-text p {
+  font-size: 13px;
+  color: var(--paper-dim);
+  font-weight: 300;
+}
+.cv-btns { display: flex; gap: 14px; flex-shrink: 0; }
+.cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 26px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all .3s;
+  cursor: pointer;
+  border: 1px solid;
+}
+.cv-btn-primary {
+  background: var(--gold);
+  color: var(--ink);
+  border-color: var(--gold);
+}
+.cv-btn-primary:hover {
+  background: var(--gold-bright);
+  box-shadow: 0 4px 20px rgba(201,169,110,0.3);
+}
+.cv-btn-secondary {
+  background: transparent;
+  color: var(--paper);
+  border-color: var(--line-strong);
+}
+.cv-btn-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+@media (max-width: 640px) {
+  .cv-bar { flex-direction: column; text-align: center; }
+  .cv-btns { width: 100%; justify-content: center; }
+}
+
+/* ========== CONTACT / FOOTER ========== */
+footer { padding: 120px 0 60px; border-bottom: none; }
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 72px;
+  align-items: start;
+}
+.contact-left h2 {
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.08;
+  margin-bottom: 22px;
+  max-width: 560px;
+}
+.contact-lede {
+  color: var(--paper-dim);
+  font-size: 15.5px;
+  max-width: 480px;
+  line-height: 1.78;
+  font-weight: 300;
+  margin-bottom: 40px;
+}
+
+.contact-form { }
+.form-group { margin-bottom: 20px; }
+.form-group label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 18px;
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--paper);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 300;
+  outline: none;
+  transition: border-color .3s;
+  resize: vertical;
+}
+.form-group input:focus,
+.form-group textarea:focus { border-color: var(--gold); }
+.form-group textarea { min-height: 120px; }
+.submit-btn {
+  width: 100%;
+  padding: 16px;
+  background: var(--gold);
+  color: var(--ink);
+  border: none;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .3s;
+  margin-top: 8px;
+}
+.submit-btn:hover {
+  background: var(--gold-bright);
+  box-shadow: 0 6px 24px rgba(201,169,110,0.3);
+}
+
+.contact-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 40px;
+}
+.contact-info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  gap: 20px;
+}
+.contact-info-item:first-child { border-top: none; }
+.contact-info-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--paper-dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.contact-info-value {
+  font-size: 14.5px;
+  color: var(--paper);
+  text-align: right;
+  transition: color .3s;
+}
+a.contact-info-item:hover .contact-info-value { color: var(--gold); }
+
+.footer-note {
+  margin-top: 90px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  color: var(--paper-dim);
+  font-size: 12px;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-weight: 300;
+}
+
+@media (max-width: 860px) {
+  .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+}
+
+/* ========== SCROLL REVEAL ========== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
+}
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+.reveal-delay-4 { transition-delay: .4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ========== LIGHTBOX ========== */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(10,12,16,0.95);
+  backdrop-filter: blur(20px);
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+.lightbox.active { display: flex; }
+.lightbox img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 20px 80px rgba(0,0,0,0.5);
+}
+.lightbox-close {
+  position: absolute;
+  top: 24px; right: 24px;
+  width: 48px; height: 48px;
+  background: var(--ink-3);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--paper);
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .3s;
+}
+.lightbox-close:hover { background: var(--gold); color: var(--ink); }
+
+/* ========== TOAST NOTIFICATION ========== */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  background: var(--ink-2);
+  border: 1px solid var(--gold);
+  color: var(--paper);
+  padding: 16px 28px;
+  border-radius: 4px;
+  font-size: 13.5px;
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all .4s cubic-bezier(.16,1,.3,1);
+  pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+/* ========== SCROLL PROGRESS BAR ========== */
+.scroll-progress {
+  position: fixed;
+  top: 72px; left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--accent));
+  z-index: 999;
+  width: 0%;
+  transition: width .05s linear;
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Hidden file input for click-to-upload images -->
+<input type="file" id="imgUploader" accept="image/*" style="display:none">
+
+<!-- ============ NAVBAR ============ -->
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo" data-en="Shuhan Teng" data-zh="滕舒涵">Shuhan Teng</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#profile" data-en="Profile" data-zh="个人简介">Profile</a>
+      <a href="#experience" data-en="Experience" data-zh="工作经历">Experience</a>
+      <a href="#portfolio" data-en="Portfolio" data-zh="作品集">Portfolio</a>
+      <a href="#skills" data-en="Skills" data-zh="专业技能">Skills</a>
+      <a href="#contact" data-en="Contact" data-zh="联系我">Contact</a>
+      <div class="lang-toggle" data-active="en" id="langToggle" onclick="toggleLang()">
+        <span class="active" data-lang="en">EN</span>
+        <span data-lang="zh">中文</span>
+        <div class="slider"></div>
+      </div>
+    </nav>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div style="width:100%;height:100%;background:radial-gradient(ellipse at 65% 15%,rgba(201,169,110,0.07),transparent 50%),radial-gradient(ellipse at 25% 85%,rgba(196,92,74,0.05),transparent 45%),var(--ink);"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="wrap hero-content">
+    <div class="hero-grid">
+      <div class="hero-text reveal">
+        <h1 class="hero-name">
+          <span data-en="Shuhan Teng" data-zh="滕舒涵">Shuhan Teng</span><em data-en="Brand Marketing" data-zh="品牌营销">Brand Marketing</em>
+        </h1>
+        <div class="hero-role">
+          <p data-i18n="heroRole1">Research informs strategy. Strategy drives execution. Execution produces data worth reporting.</p>
+          <p data-i18n="heroRole2">I completed this full cycle across three full-time internships, at Proya I supported brand positioning (<strong>500K+ interactions</strong>); at Ant Group I supported end-to-end planning and delivery of a <strong>50+ session</strong> robotics competition, with zero delays, +70% visibility, 300+ pre-registrations; at HZICC I built bilingual content reaching <strong>3.7M+ overseas users</strong>.</p>
+          <p data-i18n="heroRole3">I turn market insights into actionable campaigns and raw metrics into polished recap decks. Ready to bring this to Baidu Hong Kong.</p>
+        </div>
+      </div>
+      <div class="hero-photo-wrap reveal reveal-delay-2">
+        <div class="hero-photo-frame" data-upload-key="hero">
+          <img src="images/hero-portrait.jpg" alt="Shuhan Teng - Professional Portrait">
+        </div>
+        <div class="hero-photo-accent"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROFILE ============ -->
+<section id="profile">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 data-en="Profile" data-zh="个人简介">Profile</h2>
+      <span class="section-tag" data-en="01 · Who I Am" data-zh="01 — 关于我">01 · Who I Am</span>
+    </div>
+    <div class="profile-layout">
+      <div class="profile-text reveal">
+        <p data-i18n="profileP1">I'm a brand marketer who thinks in <strong>research first, campaign second</strong>. Across internships at Ant Group, Proya, and HZICC, my role has consistently been the same, reading the audience, translating insight into positioning, and shipping campaigns cross-functional teams can deliver on time.</p>
+        <p data-i18n="profileP2">My translation and international communication background means I don't just write brand copy. I test whether it <strong>travels across language and culture without losing meaning</strong>. That's exactly the muscle a globally-facing B2B brand team needs.</p>
+        <p data-i18n="profileP3">I'm pursuing this Brand MKT role at Baidu Hong Kong because it sits at the exact intersection of research discipline, event execution, and data-driven reporting, three things I've honed across every project below.</p>
+      </div>
+      <div class="fit-list reveal reveal-delay-1">
+        <div class="fit-item">
+          <span class="fit-n">01</span>
+          <div><h4 data-en="Brand Strategy &amp; Research" data-zh="品牌策略与研究">Brand Strategy &amp; Research</h4><p data-i18n="fit1">Led competitive benchmarking and positioning at Proya TIMAGE; built audience-persona content strategy generating 500K+ interactions.</p></div>
+        </div>
+        <div class="fit-item">
+          <span class="fit-n">02</span>
+          <div><h4 data-en="Event Planning &amp; Logistics" data-zh="活动策划与执行">Event Planning &amp; Logistics</h4><p data-i18n="fit2">End-to-end planning and delivery of a 50+ session robotics competition at Ant Group, from concept development and vendor negotiation to on-site logistics and post-event analysis, zero delays.</p></div>
+        </div>
+        <div class="fit-item">
+          <span class="fit-n">03</span>
+          <div><h4 data-en="Data-Driven Reporting" data-zh="数据驱动报告">Data-Driven Reporting</h4><p data-i18n="fit3">Built dashboards and leadership recap decks turning raw metrics into insights that lifted delivery efficiency 30%.</p></div>
+        </div>
+        <div class="fit-item">
+          <span class="fit-n">04</span>
+          <div><h4 data-en="Cross-Functional Coordination" data-zh="跨部门协调">Cross-Functional Coordination</h4><p data-i18n="fit4">Coordinated finance, legal, compliance and vendor teams; built reusable KOL frameworks and collaboration SOPs.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 data-en="Professional Experience" data-zh="实践经历">Professional Experience</h2>
+      <span class="section-tag" data-en="02 · Core Internships" data-zh="02 — 核心实习">02 · Core Internships</span>
+    </div>
+    <p class="section-intro reveal" data-en="Three full-time internships spanning tech, beauty and state media. Each is a complete brand or event lifecycle." data-zh="三段全职实习，覆盖科技、美妆与官方媒体——每一段都是完整的品牌或活动周期。">Three full-time internships spanning tech, beauty and state media. Each is a complete brand or event lifecycle.</p>
+
+    <!-- Professional Experience — three cards, each with a local photo on top -->
+    <div class="exp-cards">
+      <!-- Ant Group -->
+      <div class="exp-card reveal">
+        <div class="exp-visual" data-upload-key="exp-1">
+          <span class="exp-vbadge" data-en="Tech · Events" data-zh="科技 · 活动">Tech · Events</span>
+          <img class="exp-photo" src="images/exp-ant.jpg" alt="Ant Group — event operations and marketing internship" loading="lazy">
+          <span class="exp-photo-fallback"><span class="exp-monogram">A</span></span>
+          <button class="exp-replace" title="Replace" aria-label="Replace photo">⟳</button>
+        </div>
+        <div class="exp-card-body">
+          <span class="exp-co" data-en="Ant Group" data-zh="蚂蚁集团">Ant Group</span>
+          <span class="exp-role" data-en="Event Operations &amp; Marketing · Full-time" data-zh="活动运营与营销 · 全职">Event Operations &amp; Marketing · Full-time</span>
+          <span class="exp-period" data-en="APR – JUN 2026" data-zh="2026年4月–6月">APR – JUN 2026</span>
+          <p class="exp-line" data-en="Owned end-to-end delivery of a 50+ session robotics competition, from vendor negotiation to post-event analysis, zero-delay." data-zh="支持 50+ 场次机器人大赛的端到端交付——从供应商谈判到赛后分析，全程零延误。">Owned end-to-end delivery of a 50+ session robotics competition, from vendor negotiation to post-event analysis, zero-delay.</p>
+          <div class="exp-tags"><span data-en="Event Logistics" data-zh="活动统筹">Event Logistics</span><span data-en="Cross-Functional" data-zh="跨部门">Cross-Functional</span><span data-en="KOL Strategy" data-zh="KOL策略">KOL Strategy</span></div>
+        </div>
+      </div>
+
+      <!-- Proya -->
+      <div class="exp-card reveal reveal-delay-1">
+        <div class="exp-visual" data-upload-key="exp-2">
+          <span class="exp-vbadge" data-en="Beauty · Brand" data-zh="美妆 · 品牌">Beauty · Brand</span>
+          <img class="exp-photo" src="images/exp-proya.jpg" alt="Proya Group — product marketing internship" loading="lazy">
+          <span class="exp-photo-fallback"><span class="exp-monogram">P</span></span>
+          <button class="exp-replace" title="Replace" aria-label="Replace photo">⟳</button>
+        </div>
+        <div class="exp-card-body">
+          <span class="exp-co" data-en="Proya Group" data-zh="珀莱雅集团">Proya Group</span>
+          <span class="exp-role" data-en="Product Marketing Intern · Full-time" data-zh="产品营销实习生 · 全职">Product Marketing Intern · Full-time</span>
+          <span class="exp-period" data-en="AUG – DEC 2024" data-zh="2024年8月–12月">AUG – DEC 2024</span>
+          <p class="exp-line" data-en="Shaped positioning for TIMAGE's 10th-anniversary launch and ran KOL/KOC campaigns generating 500K+ interactions." data-zh="支持 TIMAGE 十周年系列定位，操盘 KOL/KOC 营销，累计互动 50 万+。">Shaped positioning for TIMAGE's 10th-anniversary launch and ran KOL/KOC campaigns generating 500K+ interactions.</p>
+          <div class="exp-tags"><span data-en="Brand Strategy" data-zh="品牌策略">Brand Strategy</span><span data-en="Market Research" data-zh="市场调研">Market Research</span><span data-en="Influencer Mktg" data-zh="达人营销">Influencer Mktg</span></div>
+        </div>
+      </div>
+
+      <!-- HZICC -->
+      <div class="exp-card reveal reveal-delay-2">
+        <div class="exp-visual" data-upload-key="exp-3">
+          <span class="exp-vbadge" data-en="State Media" data-zh="官方媒体">State Media</span>
+          <img class="exp-photo" src="images/exp-hzicc.jpg" alt="Hangzhou International Communication Center — bilingual content internship" loading="lazy">
+          <span class="exp-photo-fallback"><span class="exp-monogram">HZICC</span></span>
+          <button class="exp-replace" title="Replace" aria-label="Replace photo">⟳</button>
+        </div>
+        <div class="exp-card-body">
+          <span class="exp-co" data-en="Hangzhou International Communication Center" data-zh="杭州国际传播中心">Hangzhou International Communication Center</span>
+          <span class="exp-role" data-en="Brand Marketing &amp; Bilingual Content · Full-time" data-zh="品牌营销与双语内容 · 全职">Brand Marketing &amp; Bilingual Content · Full-time</span>
+          <span class="exp-period" data-en="DEC 2025 – MAR 2026" data-zh="2025年12月–2026年3月">DEC 2025 – MAR 2026</span>
+          <p class="exp-line" data-en="Led a 1M+ follower overseas portfolio; bilingual campaigns reached 3.7M+ users and 6.9M+ impressions." data-zh="运营百万级海外社媒矩阵，双语营销触达 370 万+ 用户，曝光 690 万+。">Led a 1M+ follower overseas portfolio; bilingual campaigns reached 3.7M+ users and 6.9M+ impressions.</p>
+          <div class="exp-tags"><span data-en="Audience Research" data-zh="受众调研">Audience Research</span><span data-en="Bilingual" data-zh="双语">Bilingual</span><span data-en="Social Media" data-zh="社交媒体">Social Media</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured Videos -->
+    <div class="videos-block reveal">
+      <h3 data-en="On-Camera Bilingual Brand Videos" data-zh="出镜主持 · 双语品牌视频">On-Camera Bilingual Brand Videos</h3>
+      <p class="videos-note" data-i18n="swordsNote">Appeared as on-camera presenter in two English promos for the global premiere of the historical drama <em>Swords into Plowshares</em> (太平年). 200K+ combined views on YouTube.</p>
+      <div class="video-grid">
+        <a class="vid-card" href="https://www.youtube.com/watch?v=HYRS8K8MRqI" target="_blank" rel="noopener noreferrer" data-url="https://www.youtube.com/watch?v=HYRS8K8MRqI" aria-label="Open Swords into Plowshares promo 1 on YouTube">
+          <div class="vid-visual" data-upload-key="vid-1">
+            <img class="vid-photo" src="images/vid-promo-1.jpg" alt="Swords into Plowshares promo 1 - ancient Wuyue Kingdom" loading="lazy">
+            <span class="vid-photo-fallback"><span class="vid-monogram">▶</span></span>
+            <button class="vid-replace" title="Replace" aria-label="Replace photo">⟳</button>
+            <span class="vid-visit" data-en="Watch on YouTube" data-zh="在 YouTube 观看">Watch on YouTube</span>
+          </div>
+          <p class="vid-cap" data-en="Swords into Plowshares · Ancient Wuyue Kingdom" data-zh="《太平年》· 吴越古国">Swords into Plowshares · Ancient Wuyue Kingdom</p>
+        </a>
+        <a class="vid-card" href="https://www.youtube.com/watch?v=fI2PvBlt06Q" target="_blank" rel="noopener noreferrer" data-url="https://www.youtube.com/watch?v=fI2PvBlt06Q" aria-label="Open Swords into Plowshares promo 2 on YouTube">
+          <div class="vid-visual" data-upload-key="vid-2">
+            <img class="vid-photo" src="images/vid-promo-2.jpg" alt="Swords into Plowshares promo 2 - Yijin City Museum" loading="lazy">
+            <span class="vid-photo-fallback"><span class="vid-monogram">▶</span></span>
+            <button class="vid-replace" title="Replace" aria-label="Replace photo">⟳</button>
+            <span class="vid-visit" data-en="Watch on YouTube" data-zh="在 YouTube 观看">Watch on YouTube</span>
+          </div>
+          <p class="vid-cap" data-en="Swords into Plowshares · Yijin City Museum" data-zh="《太平年》衣锦城博物馆">Swords into Plowshares · Yijin City Museum</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PORTFOLIO — ACCORDION GALLERY ============ -->
+<section id="portfolio">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 data-en="Portfolio Highlights" data-zh="精选瞬间">Portfolio Highlights</h2>
+      <span class="section-tag" data-en="03 · Other Experiences" data-zh="03 — 其他丰富经历">03 · Other Experiences</span>
+    </div>
+    <p class="section-intro reveal" data-en="Key moments where brand thinking met on-the-ground execution. Hover to explore." data-zh="品牌思维与一线执行交汇的关键时刻——悬停展开浏览。">Key moments where brand thinking met on-the-ground execution. Hover to explore.</p>
+
+    <div class="accordions">
+
+      <!-- Row 1: F1 · CFS · Musical -->
+      <div class="accordion reveal">
+        <div class="acc-panel active" data-img="images/f1-redbull.jpg" tabindex="0" role="button" aria-label="F1 Chinese Grand Prix" data-upload-key="acc-1">
+          <img src="images/f1-redbull.jpg" alt="F1 Shanghai Grand Prix - Red Bull Racing Paddock" loading="lazy">
+          <span class="acc-overlay"></span>
+          <span class="acc-caption"><span class="acc-bar"></span><span class="acc-caption-text"><span class="acc-text" data-en="F1 Chinese Grand Prix" data-zh="F1中国大奖赛">F1 Chinese Grand Prix</span><span class="acc-sub" data-en="Red Bull Racing · Event Support" data-zh="红牛车队 · 赛事支持">Red Bull Racing · Event Support</span></span></span>
+          <button class="acc-zoom" title="View" aria-label="View image">⤢</button>
+        </div>
+        <div class="acc-panel" data-img="images/cfs-esports.jpg" tabindex="0" role="button" aria-label="CFS Grand Final" data-upload-key="acc-2">
+          <img src="images/cfs-esports.jpg" alt="CFS Grand Final - Esports Interpretation" loading="lazy">
+          <span class="acc-overlay"></span>
+          <span class="acc-caption"><span class="acc-bar"></span><span class="acc-caption-text"><span class="acc-text" data-en="CFS Grand Final" data-zh="CFS全球总决赛">CFS Grand Final</span><span class="acc-sub" data-en="Stage &amp; Interview Interpreter" data-zh="舞台与采访翻译">Stage &amp; Interview Interpreter</span></span></span>
+          <button class="acc-zoom" title="View" aria-label="View image">⤢</button>
+        </div>
+        <div class="acc-panel" data-img="images/musical-theater.jpg" tabindex="0" role="button" aria-label="The Sound of Music" data-upload-key="acc-3">
+          <img src="images/musical-theater.jpg" alt="The Sound of Music - Backstage Technical Translation" loading="lazy">
+          <span class="acc-overlay"></span>
+          <span class="acc-caption"><span class="acc-bar"></span><span class="acc-caption-text"><span class="acc-text" data-en="The Sound of Music" data-zh="音乐之声">The Sound of Music</span><span class="acc-sub" data-en="Original Cast · Backstage Translator" data-zh="原版卡司 · 后台翻译">Original Cast · Backstage Translator</span></span></span>
+          <button class="acc-zoom" title="View" aria-label="View image">⤢</button>
+        </div>
+      </div>
+
+      <!-- Row 2: TikTok · MOFCOM · Dubai -->
+      <div class="accordion reveal">
+        <div class="acc-panel" data-img="images/tiktok-streamer.jpg" tabindex="0" role="button" aria-label="TikTok US Streamer Program" data-upload-key="acc-4">
+          <img src="images/tiktok-streamer.jpg" alt="TikTok US Region Streamer Incubation" loading="lazy">
+          <span class="acc-overlay"></span>
+          <span class="acc-caption"><span class="acc-bar"></span><span class="acc-caption-text"><span class="acc-text" data-en="TikTok US Streamer Program" data-zh="TikTok美区主播孵化">TikTok US Streamer Program</span><span class="acc-sub" data-en="Creator Economy · Livestream Ops" data-zh="创作者经济 · 直播运营">Creator Economy · Livestream Ops</span></span></span>
+          <button class="acc-zoom" title="View" aria-label="View image">⤢</button>
+        </div>
+        <div class="acc-panel active" data-img="images/mofcom-internship.jpg" tabindex="0" role="button" aria-label="Ministry of Commerce" data-upload-key="acc-5">
+          <img src="images/mofcom-internship.jpg" alt="Ministry of Commerce International Business Officials Academy" loading="lazy">
+          <span class="acc-overlay"></span>
+          <span class="acc-caption"><span class="acc-bar"></span><span class="acc-caption-text"><span class="acc-text" data-en="Ministry of Commerce" data-zh="商务部">Ministry of Commerce</span><span class="acc-sub" data-en="Int'l Business Officials Academy" data-zh="国际商务官员研修学院">Int'l Business Officials Academy</span></span></span>
+          <button class="acc-zoom" title="View" aria-label="View image">⤢</button>
+        </div>
+        <div class="acc-panel" data-img="images/dubai-roadshow.jpg" tabindex="0" role="button" aria-label="Dubai Tourism Roadshow" data-upload-key="acc-6">
+          <img src="images/dubai-roadshow.jpg" alt="Dubai Tourism China Roadshow - Hangzhou Station" loading="lazy">
+          <span class="acc-overlay"></span>
+          <span class="acc-caption"><span class="acc-bar"></span><span class="acc-caption-text"><span class="acc-text" data-en="Dubai Tourism Roadshow" data-zh="迪拜旅游局路演">Dubai Tourism Roadshow</span><span class="acc-sub" data-en="Channel Marketing · Hilton Al Habtoor" data-zh="渠道营销 · 哈布图尔城希尔顿">Channel Marketing · Hilton Al Habtoor</span></span></span>
+          <button class="acc-zoom" title="View" aria-label="View image">⤢</button>
+        </div>
+      </div>
+
+      <!-- Row 3: Asian Games · Minth · Foreign model -->
+      <div class="accordion reveal">
+        <div class="acc-panel" data-img="images/asian-games.jpg" tabindex="0" role="button" aria-label="19th Asian Games" data-upload-key="acc-7">
+          <img src="images/asian-games.jpg" alt="Asian Games Xiao Qinghe Volunteer - Hangzhou TV Roundtable" loading="lazy">
+          <span class="acc-overlay"></span>
+          <span class="acc-caption"><span class="acc-bar"></span><span class="acc-caption-text"><span class="acc-text" data-en="19th Asian Games" data-zh="第十九届亚运会">19th Asian Games</span><span class="acc-sub" data-en="Volunteer · Hangzhou TV Roundtable" data-zh="志愿者 · 杭州电视台圆桌会">Volunteer · Hangzhou TV Roundtable</span></span></span>
+          <button class="acc-zoom" title="View" aria-label="View image">⤢</button>
+        </div>
+        <div class="acc-panel active" data-img="images/minshi-exchange.jpg" tabindex="0" role="button" aria-label="Minth Group International Youth Cultural Exchange" data-upload-key="acc-8">
+          <img src="images/minshi-exchange.jpg" alt="Minth Group International Youth Cultural Exchange" loading="lazy">
+          <span class="acc-overlay"></span>
+          <span class="acc-caption"><span class="acc-bar"></span><span class="acc-caption-text"><span class="acc-text" data-en="Minth Group International Youth Cultural Exchange" data-zh="敏实集团国际青年文化交流">Minth Group International Youth Cultural Exchange</span><span class="acc-sub" data-en="Simultaneous Interpreter for Group CEO Wei Qinglian" data-zh="为集团CEO魏清莲女士做同传">Simultaneous Interpreter for Group CEO Wei Qinglian</span></span></span>
+          <button class="acc-zoom" title="View" aria-label="View image">⤢</button>
+        </div>
+        <div class="acc-panel" data-img="images/foreign-model.jpg" tabindex="0" role="button" aria-label="Fashion Shoot Interpreter" data-upload-key="acc-9">
+          <img src="images/foreign-model.jpg" alt="Foreign Model On-Set Translation" loading="lazy">
+          <span class="acc-overlay"></span>
+          <span class="acc-caption"><span class="acc-bar"></span><span class="acc-caption-text"><span class="acc-text" data-en="Fashion Shoot Interpreter" data-zh="时尚拍摄翻译">Fashion Shoot Interpreter</span><span class="acc-sub" data-en="On-Set Model Translation" data-zh="片场模特翻译">On-Set Model Translation</span></span></span>
+          <button class="acc-zoom" title="View" aria-label="View image">⤢</button>
+        </div>
+      </div>
+
+      <!-- Row 4: SISU · UN (centered) -->
+      <div class="accordion accordion--center reveal">
+        <div class="acc-panel active" data-img="images/sisu-camp.jpg" tabindex="0" role="button" aria-label="SISU Interpreting Camp" data-upload-key="acc-10">
+          <img src="images/sisu-camp.jpg" alt="Shanghai International Studies University Interpreting Summer Camp" loading="lazy">
+          <span class="acc-overlay"></span>
+          <span class="acc-caption"><span class="acc-bar"></span><span class="acc-caption-text"><span class="acc-text" data-en="SISU Interpreting Camp" data-zh="上外口译夏令营">SISU Interpreting Camp</span><span class="acc-sub" data-en="Outstanding Trainee" data-zh="优秀学员">Outstanding Trainee</span></span></span>
+          <button class="acc-zoom" title="View" aria-label="View image">⤢</button>
+        </div>
+        <div class="acc-panel" data-img="images/un-program.jpg" tabindex="0" role="button" aria-label="UN Civil Servant Program" data-upload-key="acc-11">
+          <img src="images/un-program.jpg" alt="China International Civil Servant Capability Building Program" loading="lazy">
+          <span class="acc-overlay"></span>
+          <span class="acc-caption"><span class="acc-bar"></span><span class="acc-caption-text"><span class="acc-text" data-en="UN Civil Servant Program" data-zh="国际公务员项目">UN Civil Servant Program</span><span class="acc-sub" data-en="Top 5% · UNA-China Certified" data-zh="前5% · 中国联协认证">Top 5% · UNA-China Certified</span></span></span>
+          <button class="acc-zoom" title="View" aria-label="View image">⤢</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 data-en="Skills &amp; Toolkit" data-zh="技能与工具">Skills &amp; Toolkit</h2>
+      <span class="section-tag" data-en="04 · What I Bring" data-zh="04 — 我的能力">04 · What I Bring</span>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-block">
+        <h4 data-en="Languages" data-zh="语言能力">Languages</h4>
+        <ul>
+          <li><b data-en="Mandarin" data-zh="普通话">Mandarin</b> · <span data-en="Native" data-zh="母语">Native</span></li>
+          <li><b data-en="English" data-zh="英语">English</b> · <span data-en="Fluent, IELTS 8.0" data-zh="流利，雅思 8.0">Fluent, IELTS 8.0</span></li>
+          <li><b data-en="Cantonese" data-zh="粤语">Cantonese</b> · <span data-en="Conversational" data-zh="日常交流">Conversational</span></li>
+        </ul>
+      </div>
+      <div class="skill-block">
+        <h4 data-en="Research &amp; Data" data-zh="研究与数据">Research &amp; Data</h4>
+        <ul>
+          <li><b data-en="Excel" data-zh="Excel">Excel</b> · <span data-en="VLOOKUP, pivot tables, dashboards" data-zh="VLOOKUP、数据透视表、数据看板">VLOOKUP, pivot tables, dashboards</span></li>
+          <li><b data-en="SQL" data-zh="SQL">SQL</b> · <span data-en="Basic data analysis" data-zh="基础数据分析">Basic data analysis</span></li>
+          <li data-en="Competitive benchmarking frameworks" data-zh="竞品对标分析框架">Competitive benchmarking frameworks</li>
+          <li data-en="Leadership recap decks" data-zh="管理层复盘报告">Leadership recap decks</li>
+        </ul>
+      </div>
+      <div class="skill-block">
+        <h4 data-en="Content &amp; Creative" data-zh="内容与创意">Content &amp; Creative</h4>
+        <ul>
+          <li><b data-en="Premiere Pro" data-zh="Premiere Pro">Premiere Pro</b> · <span data-en="Video editing" data-zh="视频剪辑">Video editing</span></li>
+          <li><b data-en="Photoshop" data-zh="Photoshop">Photoshop</b> · <span data-en="Graphic design" data-zh="平面设计">Graphic design</span></li>
+          <li data-en="Bilingual copy &amp; localization" data-zh="双语文案与本地化">Bilingual copy &amp; localization</li>
+          <li data-en="Multi-platform social content" data-zh="多平台社媒内容">Multi-platform social content</li>
+        </ul>
+      </div>
+      <div class="skill-block">
+        <h4 data-en="Professional Skills" data-zh="职业能力">Professional Skills</h4>
+        <ul>
+          <li data-en="Project management &amp; SOP design" data-zh="项目管理与 SOP 搭建">Project management &amp; SOP design</li>
+          <li data-en="KOL/KOC evaluation frameworks" data-zh="KOL/KOC 评估框架">KOL/KOC evaluation frameworks</li>
+          <li data-en="Event logistics end-to-end" data-zh="活动全链路统筹">Event logistics end-to-end</li>
+          <li data-en="Cross-functional stakeholder mgmt" data-zh="跨部门利益相关方管理">Cross-functional stakeholder mgmt</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CV DOWNLOAD ============ -->
+<div class="wrap">
+  <div class="cv-bar reveal">
+    <div class="cv-bar-text">
+      <h3 data-en="Download My CV" data-zh="下载简历">Download My CV</h3>
+      <p data-en="Full resume available in both English and Chinese versions" data-zh="提供中英文完整版简历下载">Full resume available in both English and Chinese versions</p>
+    </div>
+    <div class="cv-btns">
+      <a href="cv/Shuhan_Teng_CV_EN.pdf" download class="cv-btn cv-btn-primary" onclick="showToast(currentLang==='zh'?'正在下载英文简历...':'Downloading English CV...')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span data-en="English CV" data-zh="英文简历">English CV</span>
+      </a>
+      <a href="cv/Shuhan_Teng_CV_CN.pdf" download class="cv-btn cv-btn-secondary" onclick="showToast(currentLang==='zh'?'正在下载中文简历...':'Downloading Chinese CV...')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span data-en="中文简历" data-zh="中文简历">中文简历</span>
+      </a>    </div>
+  </div>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="contact-layout">
+      <div class="contact-left reveal">
+        <span class="eyebrow" data-en="05 · Get In Touch" data-zh="05 — 联系我">05 · Get In Touch</span>
+        <h2 data-i18n="contactTitle">Let's Build Your Brand Story Together.</h2>
+        <p class="contact-lede" data-en="Open to Brand Marketing opportunities in Hong Kong, bringing research discipline, bilingual fluency, and full-cycle event delivery to your team. Let's connect." data-zh="正在寻找香港品牌市场营销机会——具备研究素养、双语能力与全周期活动执行力，期待与您联系。">Open to Brand Marketing opportunities in Hong Kong, bringing research discipline, bilingual fluency, and full-cycle event delivery to your team. Let's connect.</p>
+
+        <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label for="formName" data-en="Your Name" data-zh="您的姓名">Your Name</label>
+            <input type="text" id="formName" data-ph-en="How should I address you?" data-ph-zh="请问如何称呼您？" placeholder="How should I address you?" required>
+          </div>
+          <div class="form-group">
+            <label for="formEmail" data-en="Your Email" data-zh="电子邮箱">Your Email</label>
+            <input type="email" id="formEmail" data-ph-en="your@email.com" data-ph-zh="your@email.com" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="formMessage" data-en="Message" data-zh="留言内容">Message</label>
+            <textarea id="formMessage" data-ph-en="Tell me about the opportunity, or just say hi..." data-ph-zh="请告诉我机会详情，或打个招呼…" placeholder="Tell me about the opportunity, or just say hi..." required></textarea>
+          </div>
+          <button type="submit" class="submit-btn" data-en="Send Message →" data-zh="发送留言 →">Send Message →</button>
+        </form>
+      </div>
+
+      <div class="reveal reveal-delay-1">
+        <div class="contact-info-list">
+          <a href="mailto:tengshuhan@152mail.com.cn" class="contact-info-item">
+            <span class="contact-info-label" data-en="Email" data-zh="邮箱">Email</span>
+            <span class="contact-info-value">tengshuhan@152mail.com.cn</span>
+          </a>
+          <div class="contact-info-item">
+            <span class="contact-info-label" data-en="WeChat" data-zh="微信">WeChat</span>
+            <span class="contact-info-value">13867893458</span>
+          </div>
+          <a href="tel:+8613867893458" class="contact-info-item">
+            <span class="contact-info-label" data-en="Phone" data-zh="电话">Phone</span>
+            <span class="contact-info-value">+86 138 6789 3458</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      <span data-en="Shuhan Teng · Brand Marketing Portfolio" data-zh="滕舒涵 · 品牌营销作品集">Shuhan Teng · Brand Marketing Portfolio</span>
+      <span data-en="Built for the Baidu Brand MKT (Hong Kong) application, 2026" data-zh="为百度品牌市场营销（香港）岗位申请而制，2026">Built for the Baidu Brand MKT (Hong Kong) application, 2026</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ SCRIPTS ============ -->
+<script>
+// ===== Mobile Nav Toggle =====
+const hamburger = document.getElementById('navHamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
+});
+
+// ===== i18n content (for innerHTML paragraphs) =====
+const i18n = {
+  en: {
+    heroRole1: 'Research informs strategy. Strategy drives execution. Execution produces data worth reporting.',
+    heroRole2: 'I completed this full cycle across three full-time internships, at Proya I supported brand positioning (<strong>500K+ interactions</strong>); at Ant Group I supported end-to-end planning and delivery of a <strong>50+ session</strong> robotics competition, with zero delays, +70% visibility, 300+ pre-registrations; at HZICC I built bilingual content reaching <strong>3.7M+ overseas users</strong>.',
+    heroRole3: 'I turn market insights into actionable campaigns and raw metrics into polished recap decks. Ready to bring this to Baidu Hong Kong.',
+    profileP1: "I'm a brand marketer who thinks in <strong>research first, campaign second</strong>. Across internships at Ant Group, Proya, and HZICC, my role has consistently been the same, reading the audience, translating insight into positioning, and shipping campaigns cross-functional teams can deliver on time.",
+    profileP2: 'My translation and international communication background means I don\'t just write brand copy. I test whether it <strong>travels across language and culture without losing meaning</strong>. That\'s exactly the muscle a globally-facing B2B brand team needs.',
+    profileP3: 'I\'m pursuing this Brand MKT role at Baidu Hong Kong because it sits at the exact intersection of research discipline, event execution, and data-driven reporting, three things I\'ve honed across every project below.',
+    contactTitle: "Let's Build Our Brand Story Together.",
+    swordsNote: 'Appeared as on-camera presenter in two English promos for the global premiere of the historical drama <em>Swords into Plowshares</em> (太平年). 200K+ combined views on YouTube.',
+    fit1: 'Led competitive benchmarking and positioning at Proya <span class="nw">TIMAGE</span>; built audience-persona content strategy generating <span class="nw">500K+ interactions</span>.',
+    fit2: 'End-to-end planning and delivery of a <span class="nw">50+ session</span> robotics competition at Ant Group, from concept development and vendor negotiation to on-site logistics and post-event analysis, zero delays.',
+    fit3: 'Built dashboards and leadership recap decks turning raw metrics into insights that lifted delivery efficiency <span class="nw">30%</span>.',
+    fit4: 'Coordinated finance, legal, compliance and vendor teams; built reusable <span class="nw">KOL frameworks</span> and collaboration <span class="nw">SOPs</span>.'
+  },
+  zh: {
+    heroRole1: '调研指导策略，策略驱动执行，执行产出值得汇报的数据。',
+    heroRole2: '我在三段全职实习中完整走过了这个闭环：在珀莱雅支撑品牌定位，驱动 <strong>50万+ 互动</strong>；在蚂蚁集团支撑一场大型机器人赛事的端到端策划与交付，从供应商谈判到现场执行与赛后复盘，覆盖 <strong>50+ 场次零延误</strong>，并将曝光提升 70%、预售报名 300+ 人；在杭州国传中心构建触达 <strong>370万+ 海外用户</strong>的双语内容。',
+    heroRole3: '我能把市场洞察转化为可落地的营销方案，把原始数据打磨成供决策层审阅的复盘材料。已准备好为百度香港创造同样的价值。',
+    profileP1: '我是一名<strong>先做调研、再做营销</strong>的品牌营销人。在蚂蚁集团、珀莱雅与杭州官方国际传播中心的实习中，我的角色始终如一：读懂受众、把洞察转译为定位，并交付可按时落地的营销方案。',
+    profileP2: '我的翻译与对外传播背景意味着我不只是写品牌文案——我会检验它<strong>能否跨语言、跨文化而不失真</strong>。这正是一个面向全球的 B2B 品牌团队所需的硬实力。',
+    profileP3: '我应聘百度香港品牌营销岗，正是因为它处于研究素养、活动执行与数据报告的精确交汇点——这三项能力我在以下每个项目中都反复打磨。',
+    contactTitle: '期待与您<br>共创品牌故事',
+    swordsNote: '在历史剧《太平年》全球首映的两支英文宣传片中出镜主持——YouTube 合计播放量 20 万+。',
+    fit1: '在珀莱雅 <span class="nw">TIMAGE</span> 支持竞品对标与品牌定位，搭建受众画像与内容策略，累计互动 <span class="nw">50 万+</span>。',
+    fit2: '在蚂蚁集团端到端策划与交付 <span class="nw">50+ 场</span>机器人大赛——从方案构思、供应商谈判到现场执行与赛后分析，全程零延误。',
+    fit3: '搭建数据看板与管理层复盘报告，将原始指标提炼为洞察，交付效率提升 <span class="nw">30%</span>。',
+    fit4: '协调财务、法务、合规与供应商等多方团队，搭建可复用的 <span class="nw">KOL 评估框架</span> 与协作流程<span class="nw">（SOP）</span>。'
+  }
+};
+
+let currentLang = 'en';
+
+function toggleLang() {
+  const toggle = document.getElementById('langToggle');
+  const newLang = currentLang === 'en' ? 'zh' : 'en';
+  currentLang = newLang;
+  toggle.dataset.active = newLang;
+  toggle.querySelectorAll('span').forEach(s => {
+    s.classList.toggle('active', s.dataset.lang === newLang);
+  });
+  document.documentElement.setAttribute('data-lang', newLang);
+
+  // Plain-text / attribute-driven translations
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.textContent = newLang === 'en' ? el.dataset.en : el.dataset.zh;
+  });
+  // Inner-HTML paragraphs (preserve <strong>)
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (i18n[newLang][key] != null) el.innerHTML = i18n[newLang][key];
+  });
+  // Placeholders
+  document.querySelectorAll('[data-ph-en]').forEach(el => {
+    el.placeholder = newLang === 'en' ? el.dataset.phEn : el.dataset.phZh;
+  });
+  // Empty video-card hints
+  document.querySelectorAll('.vid-visual.no-photo').forEach(el => {
+    el.setAttribute('data-hint', newLang === 'en' ? 'Click to add photo' : '点击上传图片');
+  });
+}
+
+// ===== Accordion Gallery =====
+document.querySelectorAll('.accordion').forEach(acc => {
+  const panels = Array.from(acc.querySelectorAll('.acc-panel'));
+  const setActive = (idx) => panels.forEach((el, j) => el.classList.toggle('active', j === idx));
+  panels.forEach((p, i) => {
+    p.addEventListener('mouseenter', () => setActive(i));
+    p.addEventListener('focus', () => setActive(i));
+    p.addEventListener('click', (e) => {
+      if (e.target.closest('.acc-zoom') || e.target.closest('.acc-replace')) return; // handled separately
+      if (p.classList.contains('is-empty')) { openUpload(p); return; }
+      setActive(i);
+    });
+  });
+});
+
+// ===== Lightbox (accordion zoom) =====
+document.querySelectorAll('.acc-zoom').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const panel = btn.closest('.acc-panel');
+    if (panel.classList.contains('is-empty')) { openUpload(panel); return; }
+    openLightbox(panel.dataset.img);
+  });
+});
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// ===== Click-to-upload images =====
+const uploader = document.getElementById('imgUploader');
+let uploadTargetEl = null;
+// Absolute server URL so uploads reach the disk when the page is opened as a
+// local file (file://) inside the sandbox browser. For pages served over
+// http(s) (tunnel or server), we use the same-origin relative '/upload'.
+const SERVER = 'http://localhost:8123';
+
+// Try every URL that could reach the local upload server, in order:
+//   1. same-origin '/upload' (works when served via tunnel or the server)
+//   2. absolute localhost:8123 (works for file:// inside the sandbox browser)
+// Returns the server JSON response, or null if all attempts fail.
+async function postUpload(fd) {
+  const urls = [];
+  const origin = location.origin;
+  if (origin && origin !== 'file://' && origin !== 'null') urls.push('/upload');
+  urls.push(SERVER + '/upload');
+  for (const u of urls) {
+    try {
+      const r = await fetch(u, { method: 'POST', body: fd });
+      if (r.ok) { const j = await r.json(); if (j && j.ok) return j; }
+    } catch (_) { /* try next URL */ }
+  }
+  return null;
+}
+
+function openUpload(container) {
+  uploadTargetEl = container;
+  uploader.value = '';
+  uploader.click();
+}
+
+uploader.addEventListener('change', () => {
+  const file = uploader.files && uploader.files[0];
+  if (!file || !uploadTargetEl) return;
+  const target = uploadTargetEl;   // capture before reset (onload is async)
+  uploadTargetEl = null;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const img = target.querySelector('img');
+    if (!img) return;
+    img.src = e.target.result;            // immediate display (base64)
+    img.style.display = '';
+    img.dataset.broken = '0';
+    target.classList.remove('is-empty');
+    target.style.background = '';
+    if (target.dataset.img !== undefined) target.dataset.img = e.target.result;
+    if (target.classList.contains('hero-photo-frame')) sizeHeroPhoto();
+    persistUpload(target, e.target.result);   // browser cache (survives refresh)
+    saveToDisk(target, file);                 // permanent save to images/ + bakes into file
+    showToast(currentLang === 'zh' ? '图片已更新' : 'Image updated');
+  };
+  reader.readAsDataURL(file);
+});
+
+// Permanently save the uploaded file to images/ via the local server.
+// On success the image is written to disk and index.html is updated, so it
+// survives reloads, my edits, and opens correctly even from file://.
+// If the server is unreachable (e.g. opened as a local file), we keep the
+// base64 copy already stored in localStorage.
+function saveToDisk(target, file) {
+  if (!file) return;
+  const fd = new FormData();
+  fd.append('image', file);
+  fd.append('key', target.dataset.uploadKey || '');
+  postUpload(fd)
+    .then(j => {
+      if (j && j.ok && j.url) {
+        const img = target.querySelector('img');
+        if (img) img.src = j.url;
+        if (target.dataset.img !== undefined) target.dataset.img = j.url;
+        if (target.classList.contains('hero-photo-frame')) sizeHeroPhoto();
+        persistUpload(target, j.url);   // store PATH (not base64) -> permanent
+        showToast(currentLang === 'zh' ? '图片已永久保存' : 'Image saved permanently');
+      } else {
+        showToast(currentLang === 'zh' ? '网络未连，图片仅本次显示' : 'Offline: image shown this session only');
+      }
+    })
+    .catch(() => { showToast(currentLang === 'zh' ? '网络未连，图片仅本次显示' : 'Offline: image shown this session only'); });
+}
+
+// ===== Persist uploaded images (survive refresh) =====
+const LS_KEY = 'shuhan_portfolio_uploads_v1';
+function loadUploads() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); } catch (_) { return {}; }
+}
+function saveUploads(map) {
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify(map));
+  } catch (_) {
+    showToast(currentLang === 'zh' ? '图片较多，部分较早图片可能未保存' : 'Storage limit reached; some earlier images may not persist');
+  }
+}
+function persistUpload(target, dataUrl) {
+  const key = target.dataset.uploadKey;
+  if (!key) return;
+  const map = loadUploads();
+  map[key] = dataUrl;
+  saveUploads(map);
+}
+// Convert a base64 data URL into a Blob (for re-uploading to the server).
+function dataURLtoBlob(dataUrl) {
+  const [head, body] = dataUrl.split(',');
+  const mime = (head.match(/:(.*?);/) || [])[1] || 'image/jpeg';
+  const bin = atob(body);
+  const arr = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+  return new Blob([arr], { type: mime });
+}
+// Rescue images that only live in localStorage as base64: push them to the
+// server so they are written to images/ and baked into index.html permanently.
+// Runs on load; harmless if the server is unreachable (keeps base64 fallback).
+function syncLocalStorageToServer() {
+  const map = loadUploads();
+  let saved = 0;
+  const keys = Object.keys(map).filter(k => typeof map[k] === 'string' && map[k].indexOf('data:image') === 0);
+  if (!keys.length) return;
+  keys.forEach(key => {
+    const val = map[key];
+    const fd = new FormData();
+    fd.append('image', dataURLtoBlob(val), (key || 'img') + '.jpg');
+    fd.append('key', key);
+    postUpload(fd)
+      .then(j => {
+        if (j && j.ok && j.url) {
+          persistUpload({ dataset: { uploadKey: key } }, j.url);
+          saved++;
+          if (saved === keys.length) {
+            showToast(currentLang === 'zh' ? ('已永久保存 ' + saved + ' 张上传图片') : ('Permanently saved ' + saved + ' uploaded image' + (saved > 1 ? 's' : '')));
+          }
+        }
+      })
+      .catch(() => {});
+  });
+}
+// Assign a stable key to every uploadable container so saved images map back
+let _upIdx = 0;
+document.querySelectorAll('.hero-photo-frame, .acc-panel, .exp-visual, .vid-visual').forEach(el => {
+  if (!el.dataset.uploadKey) el.dataset.uploadKey = 'up' + (_upIdx++);
+});
+// Restore previously saved uploads (runs after fallback logic so it wins)
+function restoreUploads() {
+  const map = loadUploads();
+  Object.keys(map).forEach(key => {
+    const el = document.querySelector('[data-upload-key="' + (window.CSS && CSS.escape ? CSS.escape(key) : key) + '"]');
+    if (!el) return;
+    const img = el.querySelector('img');
+    if (!img) return;
+    img.src = map[key];
+    img.style.display = '';
+    img.dataset.broken = '0';
+    el.classList.remove('is-empty', 'no-photo');
+    el.style.background = '';
+    if (el.dataset.img !== undefined) el.dataset.img = map[key];
+    if (el.classList.contains('hero-photo-frame')) sizeHeroPhoto();
+  });
+}
+
+function markEmpty(panel, img) {
+  img.style.display = 'none';
+  img.dataset.broken = '1';
+  panel.classList.add('is-empty');
+  panel.style.background = '';
+}
+
+// Inject upload hint + replace button into every gallery panel, and wire errors
+document.querySelectorAll('.acc-panel').forEach(panel => {
+  const hint = document.createElement('span');
+  hint.className = 'acc-upload';
+  hint.innerHTML = '<span class="acc-plus">＋</span><span class="acc-upload-text" data-en="Click to add photo" data-zh="点击上传图片">Click to add photo</span>';
+  panel.appendChild(hint);
+
+  const rep = document.createElement('button');
+  rep.className = 'acc-replace';
+  rep.title = 'Replace';
+  rep.setAttribute('aria-label', 'Replace image');
+  rep.textContent = '⟳';
+  rep.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (panel.classList.contains('is-empty')) return;
+    openUpload(panel);
+  });
+  panel.appendChild(rep);
+
+  const img = panel.querySelector('img');
+  if (img) {
+    img.addEventListener('error', () => markEmpty(panel, img));
+    img.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (panel.classList.contains('is-empty')) openUpload(panel);
+      else openLightbox(panel.dataset.img);
+    });
+    if (img.complete && img.naturalWidth === 0) markEmpty(panel, img);
+  }
+});
+
+// Hero portrait: click to replace
+const heroFrame = document.querySelector('.hero-photo-frame');
+if (heroFrame) {
+  const hint = document.createElement('span');
+  hint.className = 'hero-photo-replace';
+  hint.setAttribute('data-en', '⟳ Click to replace');
+  hint.setAttribute('data-zh', '⟳ 点击更换');
+  hint.textContent = '⟳ Click to replace';
+  heroFrame.appendChild(hint);
+  heroFrame.addEventListener('click', () => openUpload(heroFrame));
+}
+
+// Experience card photos: click to upload / replace, graceful monogram fallback
+document.querySelectorAll('.exp-visual').forEach(visual => {
+  const img = visual.querySelector('.exp-photo');
+  const rep = visual.querySelector('.exp-replace');
+  const setFallback = () => visual.classList.add('no-photo');
+  const clearFallback = () => { if (img && img.naturalWidth > 0) visual.classList.remove('no-photo'); };
+  if (img) {
+    img.addEventListener('error', setFallback);
+    img.addEventListener('load', clearFallback);
+    if (img.complete && img.naturalWidth === 0) setFallback();
+    img.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (visual.classList.contains('no-photo')) openUpload(visual);
+      else openLightbox(img.src);
+    });
+  }
+  visual.addEventListener('click', (e) => {
+    if (e.target.closest('.exp-replace')) return;
+    openUpload(visual);
+  });
+  if (rep) rep.addEventListener('click', (e) => {
+    e.stopPropagation();
+    openUpload(visual);
+  });
+});
+
+// Video link cards: anchor opens the website in a new top-level tab (escapes iframe/preview framing).
+// Empty (no-photo) cards upload instead of navigating.
+document.querySelectorAll('.vid-card').forEach(card => {
+  const visual = card.querySelector('.vid-visual');
+  const img = visual.querySelector('.vid-photo');
+  const rep = visual.querySelector('.vid-replace');
+  const setFallback = () => { visual.classList.add('no-photo'); visual.setAttribute('data-hint', currentLang === 'zh' ? '点击上传图片' : 'Click to add photo'); };
+  const clearFallback = () => { if (img && img.naturalWidth > 0) visual.classList.remove('no-photo'); };
+  if (img) {
+    img.addEventListener('error', setFallback);
+    img.addEventListener('load', clearFallback);
+    if (img.complete && img.naturalWidth === 0) setFallback();
+  }
+  // Filled card: let the native <a> navigate. Empty card: upload instead.
+  card.addEventListener('click', (e) => {
+    if (e.target.closest('.vid-replace')) return;
+    if (visual.classList.contains('no-photo')) { e.preventDefault(); openUpload(visual); }
+  });
+  if (rep) rep.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); openUpload(visual); });
+});
+
+// ===== Restore persisted uploads (after fallback logic) =====
+restoreUploads();
+// Push any images still stuck in localStorage (base64) to the server so they
+// are permanently written to images/ and baked into index.html.
+syncLocalStorageToServer();
+
+// ===== Scroll Reveal =====
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('show');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => io.observe(el));
+
+// ===== Navbar Scroll Effect =====
+const navbar = document.getElementById('navbar');
+const scrollProgress = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / docHeight) * 100;
+  navbar.classList.toggle('scrolled', scrollTop > 80);
+  scrollProgress.style.width = progress + '%';
+});
+
+// ===== Hero Photo: height = ~85% of left text block (name + role), vertically centered so top/bottom gaps match, 3:4 ratio preserved =====
+function sizeHeroPhoto() {
+  const frame = document.querySelector('.hero-photo-frame');
+  const name = document.querySelector('.hero-name');
+  const role = document.querySelector('.hero-role');
+  if (!frame || !name || !role) return;
+  if (window.innerWidth <= 820) { frame.style.height = ''; return; }
+  const blockH = name.offsetHeight + 28 + role.offsetHeight; // name + gap + role (the block described)
+  frame.style.height = Math.round(blockH * 0.85) + 'px';
+}
+window.addEventListener('load', sizeHeroPhoto);
+window.addEventListener('resize', sizeHeroPhoto);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(sizeHeroPhoto);
+sizeHeroPhoto();
+
+// ===== Toast Notification =====
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+// ===== Contact Form Submit =====
+function handleSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('formName').value;
+  const email = document.getElementById('formEmail').value;
+  const message = document.getElementById('formMessage').value;
+  const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+  window.location.href = `mailto:tengshuhan@152mail.com.cn?subject=${subject}&body=${body}`;
+  showToast(currentLang === 'zh' ? '留言发送成功！我会尽快回复您。' : 'Message sent successfully! I\'ll get back to you soon.');
+  e.target.reset();
+}
+
+// ===== Smooth scroll for anchor links =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>
